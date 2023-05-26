@@ -1,13 +1,19 @@
 {
   "files": {
-    "main.css": "/food-delivery-app/static/css/main.7acaea2f.css",
-    "main.js": "/food-delivery-app/static/js/main.07d3183d.js",
+    "main.css": "/food-delivery-app/static/css/main.666d1a64.css",
+    "main.js": "/food-delivery-app/static/js/main.36e36bcc.js",
+    "static/js/31.132fc7a6.chunk.js": "/food-delivery-app/static/js/31.132fc7a6.chunk.js",
+    "static/js/543.8727a01a.chunk.js": "/food-delivery-app/static/js/543.8727a01a.chunk.js",
+    "static/js/453.a090834a.chunk.js": "/food-delivery-app/static/js/453.a090834a.chunk.js",
     "index.html": "/food-delivery-app/index.html",
-    "main.7acaea2f.css.map": "/food-delivery-app/static/css/main.7acaea2f.css.map",
-    "main.07d3183d.js.map": "/food-delivery-app/static/js/main.07d3183d.js.map"
+    "main.666d1a64.css.map": "/food-delivery-app/static/css/main.666d1a64.css.map",
+    "main.36e36bcc.js.map": "/food-delivery-app/static/js/main.36e36bcc.js.map",
+    "31.132fc7a6.chunk.js.map": "/food-delivery-app/static/js/31.132fc7a6.chunk.js.map",
+    "543.8727a01a.chunk.js.map": "/food-delivery-app/static/js/543.8727a01a.chunk.js.map",
+    "453.a090834a.chunk.js.map": "/food-delivery-app/static/js/453.a090834a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7acaea2f.css",
-    "static/js/main.07d3183d.js"
+    "static/css/main.666d1a64.css",
+    "static/js/main.36e36bcc.js"
   ]
 }
