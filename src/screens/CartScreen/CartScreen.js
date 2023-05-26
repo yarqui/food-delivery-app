@@ -30,6 +30,7 @@ const CartScreen = () => {
       address,
     };
 
+    console.log(order);
     // TODO: Save the order to the Firebase database
   };
 

@@ -17,9 +17,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import cartReducer from './cart/cartSlice';
-// import cartSlice from './cart/cartSlice';
 import shopReducer from './shop/shopSlice';
-// import shopSlice from './shop/shopSlice';
 
 // Persists cart from cartSlice to LocalStorage
 const cartPersistConfig = {
@@ -29,7 +27,8 @@ const cartPersistConfig = {
 };
 
 const rootReducer = combineReducers({
-  cart: persistReducer(cartPersistConfig, cartReducer),
+  persistedData: persistReducer(cartPersistConfig, cartReducer),
+  // cart: cartReducer,
   shop: shopReducer,
 });
 

@@ -1,12 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const initialState = [
+  { id: 142, name: 'bun', price: 12, quantity: 1 },
+  { id: 122, name: 'pizza', price: 122, quantity: 1 },
+];
+
 const cartSlice = createSlice({
   name: 'cart',
-  initialState: [],
+  initialState,
   reducers: {
     addToCart: (state, { payload }) => {
       const { product } = payload;
-      state.push(product);
+      console.log(product);
+      return [...state.cart, product];
     },
     removeFromCart: (state, { payload }) => {
       const { productId } = payload;
@@ -14,10 +20,11 @@ const cartSlice = createSlice({
     },
     updateCartQuantity: (state, { payload }) => {
       const { productId, quantity } = payload;
-      state.forEach(product => {
+      return state.map(product => {
         if (product.id === productId) {
-          product.quantity = quantity;
+          return { ...product, quantity };
         }
+        return product;
       });
     },
   },
