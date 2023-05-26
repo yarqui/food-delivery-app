@@ -1,20 +1,37 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from 'redux/cart/cartSlice';
-import { chooseShop } from 'redux/shop/shopSlice';
-import { selectShop } from 'redux/shop/shopSelectors';
+
 import { AsideWrap, DishesWrap, MainWrap } from './HomeScreen.styled';
 
-const HomeScreen = () => {
-  const dispatch = useDispatch();
-  const shop = useSelector(selectShop);
-
-  const handleShopChoice = shopId => {
-    dispatch(chooseShop({ shopId }));
-  };
-
+const HomeScreen = ({
+  selectedShop,
+  setSelectedShop,
+  cartItems,
+  setCartItems,
+}) => {
   const handleAddToCart = product => {
-    dispatch(addToCart({ product }));
+    const existingItem = cartItems.find(item => item.id === product.id);
+
+    if (existingItem) {
+      const updatedItems = cartItems.map(item => {
+        if (item.id === product.id) {
+          return {
+            ...item,
+            quantity: item.quantity + 1,
+          };
+        }
+        return item;
+      });
+
+      setCartItems(updatedItems);
+      return;
+    }
+
+    const newCartItem = {
+      ...product,
+      quantity: 1,
+    };
+
+    setCartItems(prevState => [...prevState, newCartItem]);
   };
 
   return (
@@ -23,13 +40,13 @@ const HomeScreen = () => {
       <p>Please, choose a restaurant to pick a dish</p>
       <MainWrap>
         <AsideWrap>
-          <button onClick={() => handleShopChoice('DuckChoo')}>DuckChoo</button>
-          <button onClick={() => handleShopChoice('SoloPizza')}>
+          <button onClick={() => setSelectedShop('DuckChoo')}>DuckChoo</button>
+          <button onClick={() => setSelectedShop('SoloPizza')}>
             SoloPizza
           </button>
         </AsideWrap>
 
-        {shop === 'DuckChoo' && (
+        {selectedShop === 'DuckChoo' && (
           <DishesWrap>
             <h3>DuckChoo</h3>
             <button
@@ -59,7 +76,7 @@ const HomeScreen = () => {
           </DishesWrap>
         )}
 
-        {shop === 'SoloPizza' && (
+        {selectedShop === 'SoloPizza' && (
           <DishesWrap>
             <h3>SoloPizza</h3>
             <button
