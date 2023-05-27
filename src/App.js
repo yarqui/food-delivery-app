@@ -1,17 +1,15 @@
 import { lazy, Suspense, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { GlobalContainer } from './App.styled';
-import NavBar from 'screens/NavBar/NavBar';
+import NavBar from './components/NavBar';
 
 const HomeScreen = lazy(() => import('./screens/HomeScreen'));
 const CartScreen = lazy(() => import('./screens/CartScreen'));
 const NotFound = lazy(() => import('./screens/NotFound'));
 
-const initialShop = '';
 const initialCartItems = [];
 
 const App = () => {
-  const [selectedShop, setSelectedShop] = useState(initialShop);
   const [cartItems, setCartItems] = useState(initialCartItems);
 
   return (
@@ -24,23 +22,13 @@ const App = () => {
             exact
             path="/"
             element={
-              <HomeScreen
-                selectedShop={selectedShop}
-                setSelectedShop={setSelectedShop}
-                cartItems={cartItems}
-                setCartItems={setCartItems}
-              />
+              <HomeScreen cartItems={cartItems} setCartItems={setCartItems} />
             }
-          ></Route>
+          />
           <Route
             path="/cart"
             element={
-              <CartScreen
-                selectedShop={selectedShop}
-                setSelectedShop={setSelectedShop}
-                cartItems={cartItems}
-                setCartItems={setCartItems}
-              />
+              <CartScreen cartItems={cartItems} setCartItems={setCartItems} />
             }
           ></Route>
           <Route path="*" element={<NotFound />} />
