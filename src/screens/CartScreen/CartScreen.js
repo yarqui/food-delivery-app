@@ -1,11 +1,24 @@
 import CartItem from 'components/CartItem/CartItem';
 import React, { useState } from 'react';
+import { submitOrderToServer } from 'utils/firebaseOperations';
+
+// const initialUserCredentials = {
+//   name: '',
+//   email: '',
+//   phone: '',
+//   address: '',
+// };
 
 const CartScreen = ({ cartItems, setCartItems }) => {
+  // const [userCredentials, setUserCredentials] = useState(
+  //   initialUserCredentials
+  // );
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
+
+  // const { name, email, phone, address } = userCredentials;
 
   const handleRemoveFromCart = productId => {
     const updatedItems = cartItems.filter(dish => dish.dishId !== productId);
@@ -23,7 +36,7 @@ const CartScreen = ({ cartItems, setCartItems }) => {
     setCartItems(updatedItems);
   };
 
-  const handleOrderSubmit = () => {
+  const handleOrderSubmit = async () => {
     const order = {
       products: cartItems,
       name: name.trim(),
@@ -33,7 +46,7 @@ const CartScreen = ({ cartItems, setCartItems }) => {
     };
 
     console.log(order);
-    // TODO: Save the order to the Firebase database
+    await submitOrderToServer(order);
 
     setName('');
     setEmail('');

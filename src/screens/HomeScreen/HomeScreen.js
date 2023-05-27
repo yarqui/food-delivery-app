@@ -9,13 +9,7 @@ import shopsNames from 'utils/shopsNames';
 const initialSelectedShop = {};
 const initialShopsState = [];
 
-const HomeScreen = ({
-  // selectedShop,
-  // setSelectedShop,
-  cartItems,
-  setCartItems,
-}) => {
-  // const [selectedShop, setSelectedShop] = useState(initialSelectedShop);
+const HomeScreen = ({ cartItems, setCartItems }) => {
   const [shops, setShops] = useState(initialShopsState);
   const [dishes, setDishes] = useState([]);
 

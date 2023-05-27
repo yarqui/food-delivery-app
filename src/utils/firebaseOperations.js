@@ -3,7 +3,8 @@ import {
   where,
   collection,
   getDocs,
-  // addDoc,
+  addDoc,
+  updateDoc,
   // getCountFromServer,
 } from 'firebase/firestore';
 
@@ -36,7 +37,17 @@ export const getShopDishes = async shopId => {
     dishesSnap.forEach(dish =>
       dishes.push({ ...dish.data(), dishId: dish.id })
     );
+
     return dishes;
+  } catch (error) {
+    console.log('error:', error);
+    console.log('error.message:', error.message);
+  }
+};
+export const submitOrderToServer = async order => {
+  try {
+    const orderRef = await addDoc(collection(db, 'orders'), { ...order });
+    await updateDoc(orderRef, { orderId: orderRef.id });
   } catch (error) {
     console.log('error:', error);
     console.log('error.message:', error.message);
