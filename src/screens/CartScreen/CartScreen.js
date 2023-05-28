@@ -103,7 +103,7 @@ const CartScreen = ({ cartItems, setCartItems }) => {
     await submitOrderToServer(order);
 
     toast.success(
-      'Thank you for your order. Please wait for our delivery guy in a jiffy',
+      'Thank you for your order. Our delivery guy will be there in a jiffy 🚀',
       {
         autoClose: 3500,
         position: 'top-center',

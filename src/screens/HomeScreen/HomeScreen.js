@@ -76,7 +76,7 @@ const HomeScreen = ({ cartItems, setCartItems }) => {
             ))}
         </DishesWrap>
       </ContentWrap>
-      <ToastContainer theme="colored" autoClose={700} position="top-left" />
+      <ToastContainer theme="colored" autoClose={700} position="top-center" />
     </>
   );
 };

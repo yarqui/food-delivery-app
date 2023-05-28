@@ -30,7 +30,7 @@ const App = () => {
 
   return (
     <GlobalContainer>
-      <NavBar />
+      <NavBar cartItems={cartItems} />
 
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
