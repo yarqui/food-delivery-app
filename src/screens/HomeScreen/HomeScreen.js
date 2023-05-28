@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
-
-import { AsideWrap, DishesWrap, MainWrap } from './HomeScreen.styled';
-import { getAllShops, getShopDishes } from 'utils/firebaseOperations';
+import { ToastContainer, toast } from 'react-toastify';
+import {
+  AsideWrap,
+  DishesWrap,
+  ContentWrap,
+  TitlePrompt,
+} from './HomeScreen.styled';
+import { getAllShops } from 'utils/firebaseOperations';
 import ShopItem from 'components/ShopItem/ShopItem';
 import DishItem from 'components/DishItem/DishItem';
-import shopsNames from 'utils/shopsNames';
+import 'react-toastify/dist/ReactToastify.css';
 
-const initialSelectedShop = {};
 const initialShopsState = [];
 
 const HomeScreen = ({ cartItems, setCartItems }) => {
@@ -35,6 +39,7 @@ const HomeScreen = ({ cartItems, setCartItems }) => {
       });
 
       setCartItems(updatedItems);
+      toast.success('Added to cart');
       return;
     }
 
@@ -47,10 +52,12 @@ const HomeScreen = ({ cartItems, setCartItems }) => {
   };
 
   return (
-    <div>
-      <h2>Welcome to FetchFood Delivery</h2>
-      <p>Please, choose a restaurant to pick a dish to deliver from</p>
-      <MainWrap>
+    <>
+      <TitlePrompt>
+        <h2>Welcome to FetchFood Delivery 🍟</h2>
+        <p>Choose a restaurant to deliver food from</p>
+      </TitlePrompt>
+      <ContentWrap>
         <AsideWrap>
           {shops &&
             shops.map(shop => (
@@ -68,8 +75,9 @@ const HomeScreen = ({ cartItems, setCartItems }) => {
               />
             ))}
         </DishesWrap>
-      </MainWrap>
-    </div>
+      </ContentWrap>
+      <ToastContainer theme="colored" autoClose={700} position="top-left" />
+    </>
   );
 };
 

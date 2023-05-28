@@ -6,7 +6,6 @@ import {
   addDoc,
   updateDoc,
   getCountFromServer,
-  // getCountFromServer,
 } from 'firebase/firestore';
 
 import { db } from '../firebase/config';

@@ -1,7 +1,15 @@
 import CartItem from 'components/CartItem/CartItem';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
 import { submitOrderToServer } from 'utils/firebaseOperations';
+import localStorageNames from 'utils/localStorageNames';
+import {
+  loadFromLocalStorage,
+  removeFromLocalStorage,
+  saveToLocalStorage,
+} from 'utils/localStorageOperations';
+
 const initialUserCredentials = {
   name: '',
   email: '',
@@ -11,8 +19,15 @@ const initialUserCredentials = {
 
 const CartScreen = ({ cartItems, setCartItems }) => {
   const [userCredentials, setUserCredentials] = useState(
-    initialUserCredentials
+    () =>
+      loadFromLocalStorage(localStorageNames.cartCredentials) ??
+      initialUserCredentials
   );
+
+  useEffect(() => {
+    saveToLocalStorage(localStorageNames.cartCredentials, userCredentials);
+  }, [userCredentials]);
+
   const navigate = useNavigate();
 
   const totalSum = cartItems.reduce(
@@ -21,6 +36,7 @@ const CartScreen = ({ cartItems, setCartItems }) => {
   );
 
   const resetForm = () => {
+    removeFromLocalStorage(localStorageNames.cartCredentials);
     setUserCredentials(initialUserCredentials);
     setCartItems([]);
   };
@@ -54,13 +70,17 @@ const CartScreen = ({ cartItems, setCartItems }) => {
     const { name, email, phone, address } = userCredentials;
 
     if (cartItems.length === 0) {
-      alert('No items in the cart. Please choose something to eat.');
+      toast.warning('No items in the cart. Please choose something to eat.', {
+        autoClose: 2000,
+      });
       navigate('/', { replace: true });
       return;
     }
 
     if (!name || !email || !phone || !address) {
-      alert('All fields are required');
+      toast.warning('All fields are required', {
+        autoClose: 1000,
+      });
       return;
     }
 
@@ -73,13 +93,16 @@ const CartScreen = ({ cartItems, setCartItems }) => {
       address: address.trim(),
     };
 
-    console.log(order);
     await submitOrderToServer(order);
 
-    resetForm();
-    alert(
-      'Thank you for your order. Please wait for our delivery guy in a jiffy'
+    toast.success(
+      'Thank you for your order. Please wait for our delivery guy in a jiffy',
+      {
+        autoClose: 3500,
+        position: 'top-center',
+      }
     );
+    resetForm();
     navigate('/', { replace: true });
   };
 

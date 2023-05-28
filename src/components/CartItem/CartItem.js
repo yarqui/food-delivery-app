@@ -2,8 +2,8 @@ const CartItem = ({ dish, handleQuantityChange, handleRemoveFromCart }) => {
   const { dishId, name, price, quantity } = dish;
 
   const onQuantityChange = e => {
-    const parsedValue = parseInt(e.target.value, 10);
-    handleQuantityChange(dishId, parsedValue);
+    const quantity = parseInt(e.target.value, 10);
+    handleQuantityChange(dishId, quantity);
   };
 
   return (
