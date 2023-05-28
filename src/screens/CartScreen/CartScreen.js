@@ -1,24 +1,37 @@
 import CartItem from 'components/CartItem/CartItem';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
 import { submitOrderToServer } from 'utils/firebaseOperations';
-
-// const initialUserCredentials = {
-//   name: '',
-//   email: '',
-//   phone: '',
-//   address: '',
-// };
+const initialUserCredentials = {
+  name: '',
+  email: '',
+  phone: '',
+  address: '',
+};
 
 const CartScreen = ({ cartItems, setCartItems }) => {
-  // const [userCredentials, setUserCredentials] = useState(
-  //   initialUserCredentials
-  // );
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [address, setAddress] = useState('');
+  const [userCredentials, setUserCredentials] = useState(
+    initialUserCredentials
+  );
+  const navigate = useNavigate();
 
-  // const { name, email, phone, address } = userCredentials;
+  const totalSum = cartItems.reduce(
+    (sum, { price, quantity }) => sum + price * quantity,
+    0
+  );
+
+  const resetForm = () => {
+    setUserCredentials(initialUserCredentials);
+    setCartItems([]);
+  };
+
+  const handleInputChange = e => {
+    const { name, value } = e.currentTarget;
+    setUserCredentials(prevState => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
   const handleRemoveFromCart = productId => {
     const updatedItems = cartItems.filter(dish => dish.dishId !== productId);
@@ -36,9 +49,24 @@ const CartScreen = ({ cartItems, setCartItems }) => {
     setCartItems(updatedItems);
   };
 
-  const handleOrderSubmit = async () => {
+  const handleOrderSubmit = async e => {
+    e.preventDefault();
+    const { name, email, phone, address } = userCredentials;
+
+    if (cartItems.length === 0) {
+      alert('No items in the cart. Please choose something to eat.');
+      navigate('/', { replace: true });
+      return;
+    }
+
+    if (!name || !email || !phone || !address) {
+      alert('All fields are required');
+      return;
+    }
+
     const order = {
       products: cartItems,
+      sum: totalSum,
       name: name.trim(),
       email: email.trim().toLocaleLowerCase(),
       phone: phone.trim(),
@@ -48,11 +76,11 @@ const CartScreen = ({ cartItems, setCartItems }) => {
     console.log(order);
     await submitOrderToServer(order);
 
-    setName('');
-    setEmail('');
-    setPhone('');
-    setAddress('');
-    setCartItems([]);
+    resetForm();
+    alert(
+      'Thank you for your order. Please wait for our delivery guy in a jiffy'
+    );
+    navigate('/', { replace: true });
   };
 
   return (
@@ -66,34 +94,55 @@ const CartScreen = ({ cartItems, setCartItems }) => {
           handleRemoveFromCart={handleRemoveFromCart}
         ></CartItem>
       ))}
+      <h3>Total: ${totalSum}</h3>
 
-      <h3>Order Details:</h3>
-      <input
-        type="text"
-        placeholder="Name"
-        value={name}
-        onChange={e => setName(e.target.value)}
-      />
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={e => setEmail(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Phone"
-        value={phone}
-        onChange={e => setPhone(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Address"
-        value={address}
-        onChange={e => setAddress(e.target.value)}
-      />
+      <h3>Delivery Details:</h3>
+      <form onSubmit={handleOrderSubmit}>
+        <label htmlFor="name">Name</label>
+        <input
+          id="name"
+          type="text"
+          name="name"
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          title="Name may contain only letters, apostrophe, dash and spaces. For example Bruce Wayne, Tomas Shelby."
+          placeholder="Name"
+          value={userCredentials.name}
+          onChange={handleInputChange}
+        />
+        <label htmlFor="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          name="email"
+          pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+          // title="Please enter the valid email"
+          placeholder="Email"
+          value={userCredentials.email}
+          onChange={handleInputChange}
+        />
+        <label htmlFor="phone">Phone</label>
+        <input
+          id="phone"
+          type="tel"
+          name="phone"
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          placeholder="Phone"
+          value={userCredentials.phone}
+          onChange={handleInputChange}
+        />
+        <label htmlFor="address">Address</label>
+        <input
+          id="address"
+          type="text"
+          name="address"
+          placeholder="Address"
+          value={userCredentials.address}
+          onChange={handleInputChange}
+        />
 
-      <button onClick={handleOrderSubmit}>Submit Order</button>
+        <button type="submit">Submit Order</button>
+      </form>
     </div>
   );
 };

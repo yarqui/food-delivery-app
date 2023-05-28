@@ -5,6 +5,7 @@ import {
   getDocs,
   addDoc,
   updateDoc,
+  getCountFromServer,
   // getCountFromServer,
 } from 'firebase/firestore';
 
@@ -44,6 +45,16 @@ export const getShopDishes = async shopId => {
     console.log('error.message:', error.message);
   }
 };
+
+export const getDishesCountByShopId = async shopId => {
+  const dishesRef = collection(db, 'dishes');
+  const dishesQuery = query(dishesRef, where('shopId', '==', shopId));
+  const dishesCountSnap = await getCountFromServer(dishesQuery);
+  const dishesCount = dishesCountSnap.data().count;
+
+  return dishesCount;
+};
+
 export const submitOrderToServer = async order => {
   try {
     const orderRef = await addDoc(collection(db, 'orders'), { ...order });

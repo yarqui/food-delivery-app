@@ -14,11 +14,10 @@ const HomeScreen = ({ cartItems, setCartItems }) => {
   const [dishes, setDishes] = useState([]);
 
   useEffect(() => {
-    const fetchShops = async () => {
+    (async () => {
       const shops = await getAllShops();
       setShops(shops);
-    };
-    fetchShops();
+    })();
   }, []);
 
   const handleAddToCart = product => {
