@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkfood_delivery_app=self.webpackChunkfood_delivery_app||[]).push([[453],{453:function(e,n,r){r.r(n),r.d(n,{default:function(){return o}});var u=r(184),o=function(){return(0,u.jsx)("p",{children:"Sorry, no such page exists"})}}}]);
+//# sourceMappingURL=453.63bb35d3.chunk.js.map

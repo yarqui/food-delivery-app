@@ -1,19 +1,23 @@
 {
   "files": {
-    "main.css": "/food-delivery-app/static/css/main.666d1a64.css",
-    "main.js": "/food-delivery-app/static/js/main.36e36bcc.js",
-    "static/js/31.132fc7a6.chunk.js": "/food-delivery-app/static/js/31.132fc7a6.chunk.js",
-    "static/js/543.8727a01a.chunk.js": "/food-delivery-app/static/js/543.8727a01a.chunk.js",
-    "static/js/453.a090834a.chunk.js": "/food-delivery-app/static/js/453.a090834a.chunk.js",
+    "main.css": "/food-delivery-app/static/css/main.85ba9e02.css",
+    "main.js": "/food-delivery-app/static/js/main.9f245caa.js",
+    "static/css/594.3571f00f.chunk.css": "/food-delivery-app/static/css/594.3571f00f.chunk.css",
+    "static/js/594.7d48c002.chunk.js": "/food-delivery-app/static/js/594.7d48c002.chunk.js",
+    "static/js/675.3235bc77.chunk.js": "/food-delivery-app/static/js/675.3235bc77.chunk.js",
+    "static/js/453.63bb35d3.chunk.js": "/food-delivery-app/static/js/453.63bb35d3.chunk.js",
+    "static/js/174.df3c96f9.chunk.js": "/food-delivery-app/static/js/174.df3c96f9.chunk.js",
     "index.html": "/food-delivery-app/index.html",
-    "main.666d1a64.css.map": "/food-delivery-app/static/css/main.666d1a64.css.map",
-    "main.36e36bcc.js.map": "/food-delivery-app/static/js/main.36e36bcc.js.map",
-    "31.132fc7a6.chunk.js.map": "/food-delivery-app/static/js/31.132fc7a6.chunk.js.map",
-    "543.8727a01a.chunk.js.map": "/food-delivery-app/static/js/543.8727a01a.chunk.js.map",
-    "453.a090834a.chunk.js.map": "/food-delivery-app/static/js/453.a090834a.chunk.js.map"
+    "main.85ba9e02.css.map": "/food-delivery-app/static/css/main.85ba9e02.css.map",
+    "main.9f245caa.js.map": "/food-delivery-app/static/js/main.9f245caa.js.map",
+    "594.3571f00f.chunk.css.map": "/food-delivery-app/static/css/594.3571f00f.chunk.css.map",
+    "594.7d48c002.chunk.js.map": "/food-delivery-app/static/js/594.7d48c002.chunk.js.map",
+    "675.3235bc77.chunk.js.map": "/food-delivery-app/static/js/675.3235bc77.chunk.js.map",
+    "453.63bb35d3.chunk.js.map": "/food-delivery-app/static/js/453.63bb35d3.chunk.js.map",
+    "174.df3c96f9.chunk.js.map": "/food-delivery-app/static/js/174.df3c96f9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.666d1a64.css",
-    "static/js/main.36e36bcc.js"
+    "static/css/main.85ba9e02.css",
+    "static/js/main.9f245caa.js"
   ]
 }
