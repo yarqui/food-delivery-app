@@ -57,7 +57,6 @@ export const getDishesCountByShopId = async shopId => {
 export const submitOrderToServer = async order => {
   try {
     const orderRef = await addDoc(collection(db, 'orders'), { ...order });
-    console.log('orderRef:', orderRef);
     await updateDoc(orderRef, { orderId: orderRef.id });
   } catch (error) {
     console.log('error:', error);
