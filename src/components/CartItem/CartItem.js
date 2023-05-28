@@ -1,5 +1,6 @@
 import { Item } from 'components/DishItem/DishItem.styled';
 import { QuantityWrap } from 'screens/CartScreen/CartScreen.styled';
+import PropTypes from 'prop-types';
 
 const CartItem = ({ dish, handleQuantityChange, handleRemoveFromCart }) => {
   const { dishId, photo, name, price, quantity } = dish;
@@ -32,6 +33,12 @@ const CartItem = ({ dish, handleQuantityChange, handleRemoveFromCart }) => {
       </button>
     </Item>
   );
+};
+
+CartItem.propTypes = {
+  dish: PropTypes.object.isRequired,
+  handleQuantityChange: PropTypes.func.isRequired,
+  handleRemoveFromCart: PropTypes.func.isRequired,
 };
 
 export default CartItem;

@@ -2,6 +2,8 @@ import CartItem from 'components/CartItem/CartItem';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
+import PropTypes from 'prop-types';
+
 import { submitOrderToServer } from 'utils/firebaseOperations';
 import localStorageNames from 'utils/localStorageNames';
 import {
@@ -9,13 +11,7 @@ import {
   removeFromLocalStorage,
   saveToLocalStorage,
 } from 'utils/localStorageOperations';
-import {
-  CartWrap,
-  Form,
-  DeliveryWrap,
-  CartItemsWrap,
-  TotalTitle,
-} from './CartScreen.styled';
+import { CartWrap, Form, CartItemsWrap, TotalTitle } from './CartScreen.styled';
 
 const initialUserCredentials = {
   name: '',
@@ -103,9 +99,9 @@ const CartScreen = ({ cartItems, setCartItems }) => {
     await submitOrderToServer(order);
 
     toast.success(
-      'Thank you for your order. Our delivery guy will be there in a jiffy 🚀',
+      `Thank you for your order. Our delivery guy will be there in a jiffy 🚀`,
       {
-        autoClose: 3500,
+        autoClose: 10000,
         position: 'top-center',
       }
     );
@@ -180,4 +176,8 @@ const CartScreen = ({ cartItems, setCartItems }) => {
   );
 };
 
+CartScreen.propTypes = {
+  cartItems: PropTypes.array.isRequired,
+  setCartItems: PropTypes.func.isRequired,
+};
 export default CartScreen;

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   getDishesCountByShopId,
   getShopDishes,
@@ -37,6 +38,11 @@ const ShopItem = ({ shop, setDishes }) => {
       )}
     </Item>
   );
+};
+
+ShopItem.propTypes = {
+  shop: PropTypes.object.isRequired,
+  setDishes: PropTypes.func.isRequired,
 };
 
 export default ShopItem;

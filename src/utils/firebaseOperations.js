@@ -57,9 +57,31 @@ export const getDishesCountByShopId = async shopId => {
 export const submitOrderToServer = async order => {
   try {
     const orderRef = await addDoc(collection(db, 'orders'), { ...order });
+    console.log('orderRef:', orderRef);
     await updateDoc(orderRef, { orderId: orderRef.id });
   } catch (error) {
     console.log('error:', error);
     console.log('error.message:', error.message);
+  }
+};
+
+export const getOrdersByOrderEmail = async email => {
+  try {
+    const ordersRef = collection(db, 'orders');
+    const ordersQuery = query(ordersRef, where('email', '==', email));
+    const ordersSnapshot = await getDocs(ordersQuery);
+
+    if (ordersSnapshot.empty) {
+      console.log('No matching documents found.');
+      return null;
+    }
+
+    const orders = ordersSnapshot.docs.map(doc => doc.data());
+    console.log('orderDoc:', orders);
+
+    return orders;
+  } catch (error) {
+    console.log('Error getting order:', error.message);
+    return null;
   }
 };

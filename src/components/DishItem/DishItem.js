@@ -1,4 +1,5 @@
 import { Item } from './DishItem.styled';
+import PropTypes from 'prop-types';
 
 const DishItem = ({ handleAddToCart, dish }) => {
   const { name, price, photo } = dish;
@@ -13,6 +14,11 @@ const DishItem = ({ handleAddToCart, dish }) => {
       </button>
     </Item>
   );
+};
+
+DishItem.propTypes = {
+  dish: PropTypes.object.isRequired,
+  handleAddToCart: PropTypes.func.isRequired,
 };
 
 export default DishItem;

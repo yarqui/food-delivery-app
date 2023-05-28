@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { ToastContainer, toast } from 'react-toastify';
 import {
   AsideWrap,
@@ -79,6 +80,11 @@ const HomeScreen = ({ cartItems, setCartItems }) => {
       <ToastContainer theme="colored" autoClose={700} position="top-center" />
     </>
   );
+};
+
+HomeScreen.propTypes = {
+  cartItems: PropTypes.array.isRequired,
+  setCartItems: PropTypes.func.isRequired,
 };
 
 export default HomeScreen;

@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { GlobalContainer } from './App.styled';
 import NavBar from './components/NavBar';
 import localStorageNames from 'utils/localStorageNames';
+import HistoryScreen from 'screens/HistoryScreen/HistoryScreen';
 const HomeScreen = lazy(() => import('./screens/HomeScreen'));
 const CartScreen = lazy(() => import('./screens/CartScreen'));
 const NotFound = lazy(() => import('./screens/NotFound'));
@@ -47,6 +48,7 @@ const App = () => {
               <CartScreen cartItems={cartItems} setCartItems={setCartItems} />
             }
           />
+          <Route path="/history" element={<HistoryScreen />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
