@@ -1,7 +1,7 @@
 import CartItem from 'components/CartItem/CartItem';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 
 import { submitOrderToServer } from 'utils/firebaseOperations';
