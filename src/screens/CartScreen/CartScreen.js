@@ -9,6 +9,13 @@ import {
   removeFromLocalStorage,
   saveToLocalStorage,
 } from 'utils/localStorageOperations';
+import {
+  CartWrap,
+  Form,
+  DeliveryWrap,
+  CartItemsWrap,
+  TotalTitle,
+} from './CartScreen.styled';
 
 const initialUserCredentials = {
   name: '',
@@ -107,66 +114,69 @@ const CartScreen = ({ cartItems, setCartItems }) => {
   };
 
   return (
-    <div>
-      <h3>Cart:</h3>
-      {cartItems.map(dish => (
-        <CartItem
-          key={dish.dishId}
-          dish={dish}
-          handleQuantityChange={handleQuantityChange}
-          handleRemoveFromCart={handleRemoveFromCart}
-        ></CartItem>
-      ))}
-      <h3>Total: ${totalSum}</h3>
+    <CartWrap>
+      <div>
+        <h3>Delivery Details:</h3>
+        <Form onSubmit={handleOrderSubmit}>
+          <label htmlFor="name">Name</label>
+          <input
+            id="name"
+            type="text"
+            name="name"
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Bruce Wayne, Tomas Shelby."
+            placeholder="Name"
+            value={userCredentials.name}
+            onChange={handleInputChange}
+          />
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+            // title="Please enter the valid email"
+            placeholder="Email"
+            value={userCredentials.email}
+            onChange={handleInputChange}
+          />
+          <label htmlFor="phone">Phone</label>
+          <input
+            id="phone"
+            type="tel"
+            name="phone"
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            placeholder="Phone"
+            value={userCredentials.phone}
+            onChange={handleInputChange}
+          />
+          <label htmlFor="address">Address</label>
+          <input
+            id="address"
+            type="text"
+            name="address"
+            placeholder="Address"
+            value={userCredentials.address}
+            onChange={handleInputChange}
+          />
 
-      <h3>Delivery Details:</h3>
-      <form onSubmit={handleOrderSubmit}>
-        <label htmlFor="name">Name</label>
-        <input
-          id="name"
-          type="text"
-          name="name"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Bruce Wayne, Tomas Shelby."
-          placeholder="Name"
-          value={userCredentials.name}
-          onChange={handleInputChange}
-        />
-        <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          type="email"
-          name="email"
-          pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-          // title="Please enter the valid email"
-          placeholder="Email"
-          value={userCredentials.email}
-          onChange={handleInputChange}
-        />
-        <label htmlFor="phone">Phone</label>
-        <input
-          id="phone"
-          type="tel"
-          name="phone"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          placeholder="Phone"
-          value={userCredentials.phone}
-          onChange={handleInputChange}
-        />
-        <label htmlFor="address">Address</label>
-        <input
-          id="address"
-          type="text"
-          name="address"
-          placeholder="Address"
-          value={userCredentials.address}
-          onChange={handleInputChange}
-        />
+          <button type="submit">Submit Order</button>
+        </Form>
+      </div>
 
-        <button type="submit">Submit Order</button>
-      </form>
-    </div>
+      <CartItemsWrap>
+        <TotalTitle>Total: ${totalSum}</TotalTitle>
+        {cartItems.map(dish => (
+          <CartItem
+            key={dish.dishId}
+            dish={dish}
+            handleQuantityChange={handleQuantityChange}
+            handleRemoveFromCart={handleRemoveFromCart}
+          />
+        ))}
+      </CartItemsWrap>
+    </CartWrap>
   );
 };
 

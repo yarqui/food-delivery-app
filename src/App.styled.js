@@ -7,6 +7,4 @@ export const GlobalContainer = styled.div`
   padding-left: 16px;
   padding-right: 16px;
   max-width: 1024px;
-
-  border: 1px solid red;
 `;

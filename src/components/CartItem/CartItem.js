@@ -1,5 +1,8 @@
+import { Item } from 'components/DishItem/DishItem.styled';
+import { QuantityWrap } from 'screens/CartScreen/CartScreen.styled';
+
 const CartItem = ({ dish, handleQuantityChange, handleRemoveFromCart }) => {
-  const { dishId, name, price, quantity } = dish;
+  const { dishId, photo, name, price, quantity } = dish;
 
   const onQuantityChange = e => {
     const quantity = parseInt(e.target.value, 10);
@@ -7,10 +10,11 @@ const CartItem = ({ dish, handleQuantityChange, handleRemoveFromCart }) => {
   };
 
   return (
-    <>
+    <Item>
+      <img src={photo} alt={name} width="200" />
       <p>{name}</p>
       <p>Price: ${price}</p>
-      <div>
+      <QuantityWrap>
         <p>Quantity:</p>
         <input
           type="number"
@@ -18,7 +22,7 @@ const CartItem = ({ dish, handleQuantityChange, handleRemoveFromCart }) => {
           value={quantity}
           onChange={onQuantityChange}
         />
-      </div>
+      </QuantityWrap>
       <button
         onClick={() => {
           handleRemoveFromCart(dishId);
@@ -26,7 +30,7 @@ const CartItem = ({ dish, handleQuantityChange, handleRemoveFromCart }) => {
       >
         Remove
       </button>
-    </>
+    </Item>
   );
 };
 
