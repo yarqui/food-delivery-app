@@ -1,23 +1,21 @@
 {
   "files": {
     "main.css": "/food-delivery-app/static/css/main.85ba9e02.css",
-    "main.js": "/food-delivery-app/static/js/main.224b332d.js",
+    "main.js": "/food-delivery-app/static/js/main.db9eb8cc.js",
     "static/css/594.3571f00f.chunk.css": "/food-delivery-app/static/css/594.3571f00f.chunk.css",
-    "static/js/594.7d48c002.chunk.js": "/food-delivery-app/static/js/594.7d48c002.chunk.js",
-    "static/js/675.efd72e07.chunk.js": "/food-delivery-app/static/js/675.efd72e07.chunk.js",
+    "static/js/594.b72dca68.chunk.js": "/food-delivery-app/static/js/594.b72dca68.chunk.js",
+    "static/js/675.05129fec.chunk.js": "/food-delivery-app/static/js/675.05129fec.chunk.js",
     "static/js/453.63bb35d3.chunk.js": "/food-delivery-app/static/js/453.63bb35d3.chunk.js",
-    "static/js/174.df3c96f9.chunk.js": "/food-delivery-app/static/js/174.df3c96f9.chunk.js",
     "index.html": "/food-delivery-app/index.html",
     "main.85ba9e02.css.map": "/food-delivery-app/static/css/main.85ba9e02.css.map",
-    "main.224b332d.js.map": "/food-delivery-app/static/js/main.224b332d.js.map",
+    "main.db9eb8cc.js.map": "/food-delivery-app/static/js/main.db9eb8cc.js.map",
     "594.3571f00f.chunk.css.map": "/food-delivery-app/static/css/594.3571f00f.chunk.css.map",
-    "594.7d48c002.chunk.js.map": "/food-delivery-app/static/js/594.7d48c002.chunk.js.map",
-    "675.efd72e07.chunk.js.map": "/food-delivery-app/static/js/675.efd72e07.chunk.js.map",
-    "453.63bb35d3.chunk.js.map": "/food-delivery-app/static/js/453.63bb35d3.chunk.js.map",
-    "174.df3c96f9.chunk.js.map": "/food-delivery-app/static/js/174.df3c96f9.chunk.js.map"
+    "594.b72dca68.chunk.js.map": "/food-delivery-app/static/js/594.b72dca68.chunk.js.map",
+    "675.05129fec.chunk.js.map": "/food-delivery-app/static/js/675.05129fec.chunk.js.map",
+    "453.63bb35d3.chunk.js.map": "/food-delivery-app/static/js/453.63bb35d3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.85ba9e02.css",
-    "static/js/main.224b332d.js"
+    "static/js/main.db9eb8cc.js"
   ]
 }
