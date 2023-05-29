@@ -12,7 +12,7 @@ const OrderItem = ({ order }) => {
       <p>Name: {name}</p>
       <p>Email: {email}</p>
       <p>Address: {address}</p>
-      <p>Products: {productNames}</p>
+      <p>Products: {productNames.join(', ')}</p>
       <p>Total: ${sum}</p>
     </OrderItemStyled>
   );

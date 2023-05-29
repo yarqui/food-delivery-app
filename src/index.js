@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
 import App from 'App';
 import './index.css';
+import { ToastContainer } from 'react-toastify';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -12,5 +13,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <App />
       </ErrorBoundary>
     </BrowserRouter>
+    <ToastContainer theme="colored" autoClose={2000} position="top-right" />
   </React.StrictMode>
 );

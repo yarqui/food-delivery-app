@@ -17,6 +17,11 @@ export const getAllShops = async () => {
     const shopsQuery = query(shopsRef);
     const shopsSnap = await getDocs(shopsQuery);
 
+    if (shopsSnap.empty) {
+      console.log('No matching documents found.');
+      return null;
+    }
+
     shopsSnap.forEach(shop =>
       allShops.push({ ...shop.data(), shopId: shop.id })
     );
@@ -33,6 +38,11 @@ export const getShopDishes = async shopId => {
     const dishesRef = collection(db, 'dishes');
     const dishesQuery = query(dishesRef, where('shopId', '==', shopId));
     const dishesSnap = await getDocs(dishesQuery);
+
+    if (dishesSnap.empty) {
+      console.log('No matching documents found.');
+      return null;
+    }
 
     dishesSnap.forEach(dish =>
       dishes.push({ ...dish.data(), dishId: dish.id })
@@ -76,7 +86,7 @@ export const getOrdersByOrderEmail = async email => {
     }
 
     const orders = ordersSnapshot.docs.map(doc => doc.data());
-    console.log('orderDoc:', orders);
+    console.log('orders:', orders);
 
     return orders;
   } catch (error) {

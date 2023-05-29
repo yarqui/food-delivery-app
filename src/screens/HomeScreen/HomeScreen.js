@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import {
   AsideWrap,
   DishesWrap,
@@ -40,7 +40,6 @@ const HomeScreen = ({ cartItems, setCartItems }) => {
       });
 
       setCartItems(updatedItems);
-      toast.success('Added to cart');
       return;
     }
 
@@ -50,6 +49,7 @@ const HomeScreen = ({ cartItems, setCartItems }) => {
     };
 
     setCartItems(prevState => [...prevState, newCartItem]);
+    toast.success('Added to cart');
   };
 
   return (
@@ -77,7 +77,6 @@ const HomeScreen = ({ cartItems, setCartItems }) => {
             ))}
         </DishesWrap>
       </ContentWrap>
-      <ToastContainer theme="colored" autoClose={700} position="top-center" />
     </>
   );
 };

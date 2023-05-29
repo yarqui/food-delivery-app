@@ -1,7 +1,7 @@
 import CartItem from 'components/CartItem/CartItem';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 
 import { submitOrderToServer } from 'utils/firebaseOperations';
@@ -26,12 +26,11 @@ const CartScreen = ({ cartItems, setCartItems }) => {
       loadFromLocalStorage(localStorageNames.cartCredentials) ??
       initialUserCredentials
   );
+  const navigate = useNavigate();
 
   useEffect(() => {
     saveToLocalStorage(localStorageNames.cartCredentials, userCredentials);
   }, [userCredentials]);
-
-  const navigate = useNavigate();
 
   const totalSum = cartItems.reduce(
     (sum, { price, quantity }) => sum + price * quantity,
@@ -132,7 +131,6 @@ const CartScreen = ({ cartItems, setCartItems }) => {
               type="email"
               name="email"
               pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-              // title="Please enter the valid email"
               placeholder="Email"
               value={userCredentials.email}
               onChange={handleInputChange}
@@ -162,19 +160,21 @@ const CartScreen = ({ cartItems, setCartItems }) => {
           </Form>
         </div>
 
-        <CartItemsWrap>
-          <TotalTitle>Total: ${totalSum}</TotalTitle>
-          {cartItems.map(dish => (
-            <CartItem
-              key={dish.dishId}
-              dish={dish}
-              handleQuantityChange={handleQuantityChange}
-              handleRemoveFromCart={handleRemoveFromCart}
-            />
-          ))}
-        </CartItemsWrap>
+        {cartItems.length === 0 && <h3>There are no items in the cart yet</h3>}
+        {cartItems.length > 0 && (
+          <CartItemsWrap>
+            <TotalTitle>Total: ${totalSum}</TotalTitle>
+            {cartItems.map(dish => (
+              <CartItem
+                key={dish.dishId}
+                dish={dish}
+                handleQuantityChange={handleQuantityChange}
+                handleRemoveFromCart={handleRemoveFromCart}
+              />
+            ))}
+          </CartItemsWrap>
+        )}
       </CartWrap>
-      <ToastContainer theme="colored" autoClose={700} position="top-center" />
     </>
   );
 };
