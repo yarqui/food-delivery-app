@@ -20,6 +20,7 @@ All images are stored in Firebase Storage, and data such as shops, dishes, and o
 
 Features:
 - Routing between pages
+- Routes are connected with lazy import
 - Basic input fields validation
 - Fetching from Firestore DB & rendering appropriate dishes from the Firestore DB based on the selected shop click
 - A cart items counter that displays the number of items in the cart upon adding dishes
